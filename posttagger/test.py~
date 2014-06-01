@@ -1,0 +1,61 @@
+import networkx as nx
+import MySQLdb as mdb
+import sys
+import re
+import simplejson as js
+import json
+def func(d):
+	places=[]
+	extra=[]
+	con=mdb.connect("localhost","root","salvation123","yatriplace")
+	a=js.loads(d)
+	with con:
+		cur=con.cursor()
+		for i in a:
+			cur.execute("SELECT *FROM table2 WHERE cityname='"+i['token']+"'")
+			row=cur.fetchall()
+			if len(row)==0:
+				extra.append(i['token'])
+			else:
+				places.append(i['token'])
+	return places,extra
+def makeTree(places,extra):
+	sugg=['near','nearby','in']
+	ex=[]
+	g=nx.MultiGraph()
+	con=mdb.connect("localhost","root","salvation123","yatriplace")
+	fp=open('abc.json').read()
+	d=js.loads(fp)
+	with con:
+		cur=con.cursor()
+		for i in extra:
+			cur.execute("SELECT * FROM table1 WHERE suggestions_soundex=LEFT(SOUNDEX('"+i+"'),10);")
+			row=cur.fetchall()
+			if len(row)!=0:
+				extra.remove(i)
+				for j in d.keys():
+					if row[0][1] in d[j]:
+						ex.append(j)
+	print ex
+
+	#ex=[j for j in d.keys() for i in extra if i in d[j]]
+	relation=list(set(extra)-set(ex))
+	print places
+	relation=[i for i in relation if i in sugg]
+	if "famous" in extra and "in" in relation:
+		relation.remove("in")
+		relation.append("famous_in")
+	if "famous" in extra and "near" in relation:
+		relation.remove("near")
+		relation.append("famous_near")
+	for i in relation:
+		for j in places:
+			for k in ex:
+				g.add_edge(j,k,prop=i)
+	return g,ex,relation,places
+if __name__=="__main__":
+	k=func(sys.argv[1])
+	g,keys,rel,places=makeTree(k[0],k[1])
+	fp=open("dynamic_gen.json","wb")
+	
+

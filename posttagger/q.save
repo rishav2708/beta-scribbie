@@ -1,0 +1,6 @@
+CREATE TABLE table1
+(
+ID int NOT NULL AUTO_INCREMENT,
+suggestions varchar(255) NOT NULL,
+PRIMARY KEY (ID)
+);

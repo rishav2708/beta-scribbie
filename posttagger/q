@@ -1,0 +1,5 @@
+CREATE TABLE Persons
+(
+ID int AUTO_INCREMENT PRIMARY KEY,
+suggestions varchar(255),
+); 

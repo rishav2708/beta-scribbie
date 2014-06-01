@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>Yatri Place | Search anything Go anywhere</title>
+		<meta name="description" content="Yatri Place - One stop searching and booking solutions" />
+        	<meta name="author" content="" />
+		<link rel="shortcut icon" href="../favicon.ico"> 
+		<link rel="stylesheet" type="text/css" href="css/default.css" />
+		<link rel="stylesheet" type="text/css" href="css/component.css" />
+		<script src="js/modernizr.custom.js"></script>
+	</head>
+	<style>
+		body{
+			background-image : url("5.jpg");
+			background-size:cover;
+			font-family: 'Lato', Calibri, Arial, sans-serif;
+	                color: #eaeaea;
+		     }
+		img
+{
+position:absolute;
+left:10px;
+top:0px;
+z-index:-1;
+} 
+.uisearch{position:absolute;width:445px;left:680px;background-color:white;z-index:1000;top:267px;overflow:none;}
+			.container1{
+	width:600px;
+	
+	padding:20px 40px;
+	
+	background:rgba(0,0,0,.5);
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	border-radius:10px;
+	
+	-webkit-box-shadow: 0 0 2px #aaa;
+	-moz-box-shadow: 0 0 2px #aaa;
+	box-shadow: 0 0 2px #aaa;
+}
+li{list-style:none;font-size:12pt;color:black;background:rgb(59,89,172);border-radius:4px;width:510px;}
+	</style>
+	<body>
+		<div class="container">
+			<!-- Top Navigation -->
+			<img src="logo.png">
+			<header>
+				<h1>Yatri Place <span>A click-away from your favourite destination</span></h1>
+			</header>
+<script src="/ajax/jquery.js"></script>
+ <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script>
+    function display_results(e)
+{
+var xml=new XMLHttpRequest;
+xml.onreadystatechange=function()
+{
+if(xml.readyState==4 &&xml.status==200)
+{
+document.getElementById('search_div').innerHTML=xml.responseText;
+}
+}
+var val=document.getElementById('q').value;
+xml.open('GET','rsrc.php?q='+val,true);
+xml.send();
+$(".uisearch").show('slow');
+}
+$(document).ready(function()
+{
+    $('#q').autocomplete(
+    {
+        source: "rsrc.php",
+        minLength: 2
+    });
+});
+</script>			
+				<!-- Optional columns for small components -->
+				
+				<div class="column"><div class=container1>
+					<p>Yatri Place is currently in its beta phase, and may not provide accurate results.</p>
+					<p><a href="http://yatriplace.com">Go to project page</a></p>
+				</div></div><div class="main clearfix">
+				<div class="column">
+					<div id="sb-search" class="sb-search">
+						<form action="extract.php" method="get">
+							<input class="sb-search-input" placeholder="Enter your search term..." type="text" value="" name="q" id="q"  autocomplete="off">
+							<input class="sb-search-submit" type="submit"  value="">
+							<span class="sb-icon-search"></span>
+
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div><!-- /container -->
+<div role="search" id="search_div" class="uisearch">
+</div>
+		<script src="js/classie.js"></script>
+		<script src="js/uisearch.js"></script>
+		<script>
+			new UISearch( document.getElementById( 'sb-search' ) );
+			//new UISearch(document.getElementById( 'search_div' ));
+		</script>
+	</body>
+</html>

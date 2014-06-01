@@ -1,0 +1,11 @@
+<?php
+//header('Content-type: image/png');
+$img=$_POST['canvasImg'];
+$img=explode(',',$img);
+$decoded=base64_decode($img[1]);
+echo $img[1];
+$fp=fopen('1.png','w');
+fwrite($fp,$decoded);
+fclose($fp);
+//echo $t;
+?>

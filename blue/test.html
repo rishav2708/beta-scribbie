@@ -1,0 +1,37 @@
+<head>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+ 
+<script type="text/javascript" src="http://ajax.microsoft.com/ajax/jQuery.Validate/1.6/jQuery.Validate.min.js"></script>
+
+<script type="text/javascript">
+   $(document).ready(function() {
+   $("#theForm").validate();
+   });
+</script>
+</head>
+<form id="theform" method="post">
+ 
+   <label for="firstName">Your First Name</label>
+   <input class="required" name="firstname" type="text" id="firstName">
+ 
+   <label for="lastName">Your Last Name</label>
+   <input class="required" name="lastName" type="text" id="lastName" >
+ 
+   <label for="phone">Your Phone Number</label>
+   <input name="phone" type="text" id="phone">
+ 
+   <label for="email">Email</label>
+   <input class="required email" name="email" type="text" id="email">
+ 
+   <label for="city">City</label>
+   <input name="city" type="text" id="city">
+ 
+   <label for="state">State</label>
+   <input name="state" type="text" id="state">
+ 
+   <label>Your Message</label>
+   <textarea name="comments" rows="5" style="width:535px"></textarea>
+ 
+   <input class="button" type="submit" value="SEND CONTACT FORM" />
+ 
+</form>

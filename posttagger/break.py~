@@ -1,0 +1,18 @@
+import sys
+import simplejson as js
+def func(d):
+	a=js.loads(d)
+	d={}
+	
+	for i in a:
+		d[i['tag']]=[]
+		#print i
+	for i in d.keys():
+		for j in a:
+			if i==j['tag']:
+				d[i].append(j['token'])
+	print d
+	l=['chennai','delhi','mumbai','patna','bhiwani','rajasthan']
+if __name__=="__main__":
+	func(sys.argv[1])
+

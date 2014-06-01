@@ -1,0 +1,11 @@
+<?php
+$q=array();
+$con=mysqli_connect("localhost","root","salvation123","yatriplace");
+$s=$_GET['term'];
+$res=mysqli_query($con,"SELECT *FROM table2 where cityname like '".$s."%' limit 5");
+while($row=mysqli_fetch_array($res))
+{
+array_push($q,$row['cityname']);
+}
+echo json_encode($q);
+?>

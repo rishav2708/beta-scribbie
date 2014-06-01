@@ -1,0 +1,20 @@
+List of the suggestions that can be generated.
+
+Places - This keyword will be replaced by the keyword the user is searching like if he is searching "Restaurants near Delhi" then place is Delhi.
+X - X is the name of the locality of area.
+
+1. Places near X
+2. Places near X which have places nearby.
+3. Places near X which have places within Y kms.
+4. Places near X which have rating more than Y.
+5. Places near X which have rating between Y and Z.
+6. All 5 possibilities with near replaced by "IN".
+7. Intersection of the possibilities.
+
+
+This is the basic 7 premitives if we are able to implement this then we will move forward.
+
+Note : Intersection simply means two clauses joined by AND
+e.g. Places near X which have a rating more than Y and have places within Z kms.
+
+If you guys are able to generate this suggestion using the input given by the user let me know then I will tell you how to parse the input and if you like then you can even work later on the project as well.
